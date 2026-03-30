@@ -11,3 +11,41 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id       String  @id @default(cuid())
+  name     String
+  email    String  @unique
+  password String
+  role     Role    @default(USER)
+  teamId   String?
+  team     Team?   @relation(fields: [teamId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([role])
+  @@index([teamId])
+  @@map("users")
+}
+
+model Team {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String
+  code        String @unique
+  users       User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+
+  @@map("teams")
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  USER
+  GUIDE
+}
