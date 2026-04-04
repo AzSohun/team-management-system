@@ -52,6 +52,9 @@ export async function POST(request: NextRequest) {
         const token = generateToken(userFromDb.id);
 
         const resposne = await NextResponse.json({
+
+            message: "User logged in successfully.",
+
             user: {
                 id: userFromDb.id,
                 name: userFromDb.name,
