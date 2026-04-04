@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(
             {
                 error: "Invalid Server Error"
-            }
+            },
             {
                 status: 500
             }
