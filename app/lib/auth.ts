@@ -36,7 +36,7 @@ export const verifyToken = (token: string): { userId: string } => {
 };
 
 
-export const getUserFromDB = async (): Promise<User | null> => {
+export const getCurrentUser = async (): Promise<User | null> => {
 
     try {
 
