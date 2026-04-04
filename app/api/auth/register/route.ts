@@ -83,6 +83,9 @@ export async function POST(request: NextRequest) {
 
 
         const response = NextResponse.json({
+
+            message: "User registration successful.",
+
             user: {
                 id: user.id,
                 name: user.name,
