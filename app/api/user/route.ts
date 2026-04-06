@@ -24,6 +24,7 @@ export async function GET(request: NextRequest) {
 
         const searchParams = request.nextUrl.searchParams;
 
+        const name = searchParams.get("name");
         const teamId = searchParams.get("teamId");
         const role = searchParams.get("role");
 
@@ -45,6 +46,9 @@ export async function GET(request: NextRequest) {
 
 
         // Filter the teamId and role
+        if (name) {
+            where.name = name;
+        }
         if (teamId) {
             where.teamId = teamId;
         }
