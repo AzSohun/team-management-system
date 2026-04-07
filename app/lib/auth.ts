@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { Role, User } from "../types";
+import { Role, DEVELOPER } from "../types";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { prisma } from "./db";
@@ -36,7 +36,7 @@ export const verifyToken = (token: string): { userId: string } => {
 };
 
 
-export const getCurrentUser = async (): Promise<User | null> => {
+export const getCurrentUser = async (): Promise<DEVELOPER | null> => {
 
     try {
 
@@ -48,15 +48,15 @@ export const getCurrentUser = async (): Promise<User | null> => {
 
         const decodedToken = verifyToken(token);
 
-        const userFromDB = await prisma.user.findUnique({
+        const UserFromDB = await prisma.user.findUnique({
             where: { id: decodedToken.userId }
         });
 
-        if (!userFromDB) return null;
+        if (!UserFromDB) return null;
 
-        const { password, ...user } = userFromDB;
+        const { password, ...DEVELOPER } = UserFromDB;
 
-        return user as User;
+        return DEVELOPER as DEVELOPER;
 
     } catch (error) {
 
@@ -69,15 +69,15 @@ export const getCurrentUser = async (): Promise<User | null> => {
 }
 
 
-export const checkUserPermission = (user: User, role: Role): boolean => {
+export const checkUserPermission = (DEVELOPER: DEVELOPER, role: Role): boolean => {
 
     const roleHierarchy = {
-        [Role.GUEST]: 0,
-        [Role.USER]: 1,
-        [Role.MANAGER]: 2,
+        [Role.INTERN]: 0,
+        [Role.DEVELOPER]: 1,
+        [Role.LEADER]: 2,
         [Role.ADMIN]: 3
     }
 
-    return roleHierarchy[user.role] >= roleHierarchy[role];
+    return roleHierarchy[DEVELOPER.role] >= roleHierarchy[role];
 
 }

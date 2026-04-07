@@ -18,17 +18,17 @@ export async function POST(request: NextRequest) {
             )
         }
 
-        const userFromDb = await prisma.user.findUnique({
+        const userFromDB = await prisma.user.findUnique({
             where: { email },
             include: {
                 team: true
             }
         })
 
-        if (!userFromDb) {
+        if (!userFromDB) {
             return NextResponse.json(
                 {
-                    error: "User does not exist."
+                    error: "DEVELOPER does not exist."
                 },
                 {
                     status: 409
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
             );
         };
 
-        const isPasswordMatched = await verifyPassword(password, userFromDb.password);
+        const isPasswordMatched = await verifyPassword(password, userFromDB.password);
 
         if (!isPasswordMatched) {
             return NextResponse.json(
@@ -49,19 +49,19 @@ export async function POST(request: NextRequest) {
             )
         };
 
-        const token = generateToken(userFromDb.id);
+        const token = generateToken(userFromDB.id);
 
         const resposne = await NextResponse.json({
 
-            message: "User logged in successfully.",
+            message: "DEVELOPER logged in successfully.",
 
-            user: {
-                id: userFromDb.id,
-                name: userFromDb.name,
-                email: userFromDb.name,
-                role: userFromDb.role,
-                teamId: userFromDb.teamId,
-                team: userFromDb.team,
+            DEVELOPER: {
+                id: userFromDB.id,
+                name: userFromDB.name,
+                email: userFromDB.name,
+                role: userFromDB.role,
+                teamId: userFromDB.teamId,
+                team: userFromDB.team,
                 token
             }
         });
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
 
     } catch (error) {
 
-        console.error("Unable to logged in user", error)
+        console.error("Unable to logged in DEVELOPER", error)
 
         return NextResponse.json(
             {

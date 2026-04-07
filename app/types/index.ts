@@ -1,12 +1,12 @@
 export enum Role {
     ADMIN = "ADMIN",
-    MANAGER = "MANAGER",
-    USER = "USER",
-    GUEST = "GUEST"
+    LEADER = "LEADER",
+    DEVELOPER = "DEVELOPER",
+    INTERN = "INTERN"
 }
 
 
-export interface User {
+export interface DEVELOPER {
     id: string,
     name: string,
     email: string,
@@ -24,7 +24,7 @@ export interface Team {
     name: string,
     description: string | null,
     code: string,
-    members: User[],
+    members: DEVELOPER[],
     createdAt: Date,
     updatedAt: Date
 }

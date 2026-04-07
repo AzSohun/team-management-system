@@ -7,9 +7,9 @@ export async function GET(request: NextRequest) {
 
     try {
 
-        const user = await getCurrentUser();
+        const currentUser = await getCurrentUser();
 
-        if (!user) {
+        if (!currentUser) {
             return NextResponse.json(
                 {
                     error: "You are not authenticated."
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
             )
         }
 
-        return NextResponse.json(user);
+        return NextResponse.json(currentUser);
 
     } catch (error) {
 

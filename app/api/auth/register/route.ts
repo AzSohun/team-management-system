@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
 
         const userCount = await prisma.user.count();
 
-        const role = userCount === 0 ? Role.ADMIN : Role.USER;
+        const role = userCount === 0 ? Role.ADMIN : Role.DEVELOPER;
 
         const user = await prisma.user.create({
             data: {
