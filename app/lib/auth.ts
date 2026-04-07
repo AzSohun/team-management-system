@@ -49,7 +49,19 @@ export const getCurrentUser = async (): Promise<DEVELOPER | null> => {
         const decodedToken = verifyToken(token);
 
         const UserFromDB = await prisma.user.findUnique({
-            where: { id: decodedToken.userId }
+            where: { id: decodedToken.userId },
+            include: {
+                team: {
+                    select: {
+                        id: true,
+                        name: true,
+                        description: true,
+                        code: true,
+                        createdAt: true,
+                        updatedAt: true
+                    }
+                }
+            }
         });
 
         if (!UserFromDB) return null;
