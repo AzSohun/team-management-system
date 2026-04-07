@@ -84,7 +84,7 @@ export const getCurrentUser = async (): Promise<DEVELOPER | null> => {
 export const checkUserPermission = (DEVELOPER: DEVELOPER, role: Role): boolean => {
 
     const roleHierarchy = {
-        [Role.INTERN]: 0,
+        [Role.GUIDE]: 0,
         [Role.DEVELOPER]: 1,
         [Role.LEADER]: 2,
         [Role.ADMIN]: 3
