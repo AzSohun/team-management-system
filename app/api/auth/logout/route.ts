@@ -5,7 +5,7 @@ export async function POST() {
 
     const resposne = await NextResponse.json(
         {
-            message: "User logged out successfully!"
+            message: "DEVELOPER logged out successfully!"
         },
         { status: 200 }
     );

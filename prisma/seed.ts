@@ -59,61 +59,61 @@ async function main() {
             name: "Michael Thompson",
             email: "michael.thompson@company.com",
             team: teams[0],
-            role: Role.MANAGER
+            role: Role.LEADER
         },
         {
             name: "Emily Carter",
             email: "emily.carter@company.com",
             team: teams[0],
-            role: Role.USER
+            role: Role.DEVELOPER
         },
         {
             name: "Daniel Rodriguez",
             email: "daniel.rodriguez@company.com",
             team: teams[1],
-            role: Role.MANAGER
+            role: Role.LEADER
         },
         {
             name: "Sophia Martinez",
             email: "sophia.martinez@company.com",
             team: teams[1],
-            role: Role.USER
+            role: Role.DEVELOPER
         },
         {
             name: "James Anderson",
             email: "james.anderson@company.com",
             team: teams[2],
-            role: Role.USER
+            role: Role.DEVELOPER
         },
         {
             name: "Olivia Wilson",
             email: "olivia.wilson@company.com",
             team: teams[0],
-            role: Role.USER
+            role: Role.DEVELOPER
         },
         {
             name: "William Brown",
             email: "william.brown@company.com",
             team: teams[2],
-            role: Role.MANAGER
+            role: Role.LEADER
         },
         {
             name: "Ava Taylor",
             email: "ava.taylor@company.com",
             team: teams[3],
-            role: Role.USER
+            role: Role.DEVELOPER
         },
         {
             name: "Benjamin Clark",
             email: "benjamin.clark@company.com",
             team: teams[3],
-            role: Role.USER
+            role: Role.DEVELOPER
         },
         {
             name: "Isabella Lewis",
             email: "isabella.lewis@company.com",
             team: teams[3],
-            role: Role.MANAGER
+            role: Role.LEADER
         }
     ]
 
@@ -137,7 +137,7 @@ async function main() {
 
 main().catch(
     (e) => {
-        console.error("Seeding failed: ", error);
+        console.error("Seeding failed: ", e);
         process.exit(1)
     }
 ).finally(async () => {

@@ -9,12 +9,12 @@ export async function GET(request: NextRequest) {
 
     try {
 
-        const user = await getCurrentUser();
+        const DEVELOPER = await getCurrentUser();
 
-        if (!user) {
+        if (!DEVELOPER) {
             return NextResponse.json(
                 {
-                    error: "You are not authorized to access the users!"
+                    error: "You are not authorized to access the DEVELOPERs!"
                 },
                 {
                     status: 401
@@ -31,16 +31,16 @@ export async function GET(request: NextRequest) {
         const where: Prisma.UserWhereInput = {};
 
         // Admin can see all
-        if (user.role === Role.ADMIN) {
+        if (DEVELOPER.role === Role.ADMIN) {
 
         }
         // Maneager can see only all team members.
-        else if (user.role === Role.MANAGER) {
-            where.OR = [{ teamId: user.teamId }, { role: Role.USER }]
+        else if (DEVELOPER.role === Role.LEADER) {
+            where.OR = [{ teamId: DEVELOPER.teamId }, { role: Role.DEVELOPER }]
         }
-        // User only can see same user 
+        // DEVELOPER only can see same DEVELOPER 
         else {
-            where.teamId = user.teamId;
+            where.teamId = DEVELOPER.teamId;
             where.role = { not: Role.ADMIN }
         };
 

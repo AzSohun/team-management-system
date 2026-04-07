@@ -17,7 +17,7 @@ model User {
   name     String
   email    String  @unique
   password String
-  role     Role    @default(USER)
+  role     Role    @default(DEVELOPER)
   teamId   String?
   team     Team?   @relation(fields: [teamId], references: [id], onDelete: SetNull)
 
@@ -45,7 +45,7 @@ model Team {
 
 enum Role {
   ADMIN
-  MANAGER
-  USER
+  LEADER
+  DEVELOPER
   GUIDE
 }

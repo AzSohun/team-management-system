@@ -1,28 +1,28 @@
-import { checkUserPermission, getCurrentUser } from "@/app/lib/auth";
+import { checkUserPermission, getCurrentUser, } from "@/app/lib/auth";
 import { prisma } from "@/app/lib/db";
 import { Role } from "@/app/types";
 import { NextRequest, NextResponse } from "next/server";
 
 
 
-
-export async function PATCH(request: NextRequest, context: { params: Promise<{ userId: string }> }) {
-
+export async function PATCH(
+    request: NextRequest,
+    context: { params: Promise<{ userId: string }> }) {
 
     try {
 
         const { userId } = await context.params;
 
-        const user = await getCurrentUser();
+        const currentUser = await getCurrentUser();
 
-        if (!user || !checkUserPermission(user, Role.ADMIN)) {
+        if (!currentUser || !checkUserPermission(currentUser, Role.ADMIN)) {
             return NextResponse.json(
                 { error: "You're not authorized to assign user's role." },
                 { status: 401 }
             );
         };
 
-        // To assign a user into a team we need get the teamId from client-side,
+        // To assign a DEVELOPER into a team we need get the teamId from client-side,
         const { teamId } = await request.json();
 
         if (teamId) {
@@ -39,9 +39,9 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ u
         };
 
 
-        // Updating the user
+        // Updating the DEVELOPER
         const updatedUser = await prisma.user.update({
-            where: { id: user.id },
+            where: { id: userId },
             data: { teamId: teamId },
             include: { team: true }
         });
