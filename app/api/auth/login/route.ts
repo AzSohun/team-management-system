@@ -55,14 +55,15 @@ export async function POST(request: NextRequest) {
 
             message: "DEVELOPER logged in successfully.",
 
-            DEVELOPER: {
+            user: {
                 id: userFromDB.id,
                 name: userFromDB.name,
-                email: userFromDB.name,
+                email: userFromDB.email,
                 role: userFromDB.role,
                 teamId: userFromDB.teamId,
                 team: userFromDB.team,
-                token
+                createdAt: userFromDB.createdAt,
+                updatedAt: userFromDB.updatedAt
             }
         });
 
