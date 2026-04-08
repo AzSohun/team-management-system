@@ -140,7 +140,7 @@ prisma/
 - createdAt, updatedAt
 
 ### Roles Hierarchy
-- INTERN (0) - Lowest permissions
+- GUIDE (0) - Lowest permissions
 - DEVELOPER (1)
 - LEADER (2)
 - ADMIN (3) - Highest permissions
